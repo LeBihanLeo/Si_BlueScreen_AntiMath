@@ -177,7 +177,11 @@ function eventListenerExp(){
 function basicCalc(event){
     if(event.keyCode==13 || event.keyCode == undefined){
         let chaine = document.getElementById("myInput").value;
-        if(checkValid(chaine)){
+        if(!checkIfCalcul(chaine))
+        {
+            alert("Ceci n'est pas un calcul !");
+        }
+        else if(checkValid(chaine)){
             chaine = foisAndDivisionV3(chaine);
             chaine = plusAndMoinsV3(chaine);    
             console.log(event.key);
@@ -193,7 +197,11 @@ function squareRoot(event){
     if(event.keyCode==13 || event.keyCode == undefined){
 
         let chaine = document.getElementById("myInput").value;
-        if(checkValid(chaine)){
+        if(!checkIfCalcul(chaine))
+        {
+            alert("Ceci n'est pas un calcul !");
+        }
+        else if(checkValid(chaine)){
             chaine = racine(chaine);      
             console.log(chaine);
             document.getElementById("result").innerText = chaine;    
@@ -208,7 +216,11 @@ function pow(event){
     if(event.keyCode==13 || event.keyCode == undefined){
         let chaine1 = document.getElementById("myInput").value;
         let chaine2 = document.getElementById("exposant").value;
-        if(checkValid(chaine1) && checkValid(chaine2)){
+        if(!checkIfCalcul(chaine1) && !checkIfCalcul(chaine2))
+        {
+            alert("Ceci n'est pas un calcul !");
+        }
+        else if(checkValid(chaine1) && checkValid(chaine2)){
             let chaine = puissance(chaine1, chaine2);
             console.log(chaine);
             document.getElementById("result").innerText = chaine;    
@@ -223,7 +235,11 @@ function pow(event){
 function lnLoad(event){
     if(event.keyCode==13 || event.keyCode == undefined){
         let chaine = document.getElementById("myInput").value;
-        if(checkValid(chaine)){
+        if(!checkIfCalcul(chaine))
+        {
+            alert("Ceci n'est pas un calcul !");
+        }
+        else if(checkValid(chaine)){
             chaine = ln(chaine);      
             console.log(chaine);
             document.getElementById("result").innerText = chaine;    
@@ -237,7 +253,11 @@ function lnLoad(event){
 function expLoad(event){
     if(event.keyCode==13 || event.keyCode == undefined){
         let chaine = document.getElementById("myInput").value;
-        if(checkValid(chaine)){
+        if(!checkIfCalcul(chaine))
+        {
+            alert("Ceci n'est pas un calcul !");
+        }
+        else if(checkValid(chaine)){
             chaine = exp(chaine);      
             console.log(chaine);
             document.getElementById("result").innerText = chaine;    
@@ -455,6 +475,16 @@ function checkValid(chaine)
         }
     }
     return valid;
+}
+
+function checkIfCalcul(chaine)
+{
+    let calculValid = true;
+    if(chaine.match(/[a-zA-Z€?,;:!§<>²&é~"#'{}()|è`_\[\]\\ç^à@°=¨^$£¤ù%µ]/))
+    {
+        calculValid = false;
+    }
+    return calculValid;
 }
 //--------------------------------
 
