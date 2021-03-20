@@ -146,8 +146,8 @@ function eventListenerBasicCalc(){
 document.getElementById("myButton").addEventListener("click", event => {
         let chaine = document.getElementById("myInput").value;
         if(checkValid(chaine)){
-            chaine = foisAndDivisionV2(chaine);
-            chaine = plusAndMoinsV2(chaine);    
+            chaine = foisAndDivisionV3(chaine);
+            chaine = plusAndMoinsV3(chaine);    
             console.log(chaine);
             document.getElementById("result").innerText = chaine;    
         }
@@ -202,8 +202,8 @@ function eventListenerExp(){
 
 //--------------------------------
 
-//calcul function
-function foisAndDivisionV2(chaine)
+//calcul function multiplication/division
+function foisAndDivisionV3(chaine)
 {
     for(let i=0; i<chaine.length; i++)
     {
@@ -213,13 +213,18 @@ function foisAndDivisionV2(chaine)
             let right=i+1;
             while(left != 0 && chaine[left] != '*' && chaine[left] != '/' && chaine[left] != '+' && chaine[left] != '-')
             {
-                if(chaine[left-1] != '*' && chaine[left-1] != '/' && chaine[left-1] != '+' && chaine[left-1] != '-')
+                if(chaine[left-1] == '-')
+                {
+                    left--;
+                    break;
+                }
+                else if(chaine[left-1] != '*' && chaine[left-1] != '/' && chaine[left-1] != '+' && chaine[left-1] != '-')
                 {
                     left--;
                 }
                 else break;
             }
-            while(right != chaine.length-1 && chaine[right] != '*' && chaine[right] != '/' && chaine[right] != '+' && chaine[right] != '-')
+            while(right != chaine.length-1 && chaine[right] != '*' && chaine[right] != '/' && chaine[right] != '+')
             {
                 if(chaine[right+1] != '*' && chaine[right+1] != '/' && chaine[right+1] != '+' && chaine[right+1] != '-')
                 {
@@ -259,68 +264,71 @@ function foisAndDivisionV2(chaine)
     //document.getElementById("res").innerText = res;
 }
 
-function plusAndMoinsV2(chaine)
+//calcul function addition/substraction
+function plusAndMoinsV3(chaine)
 {
     for(let i=0; i<chaine.length; i++)
     {
-        if(chaine[i] == '+' || chaine[i] == '-')
+        if(i != 0)
         {
-            let left=0;
-            let right=i+1;
-            /*
-            while(left != 0 && chaine[left] != '+' && chaine[left] != '-')
+            if(chaine[i] == '+' || chaine[i] == '-')
             {
-                if(chaine[left-1] != '+' && chaine[left-1] != '-')
+                let left=0;
+                let right=i+1;
+                /*
+                while(left != 0 && chaine[left] != '+' && chaine[left] != '-')
                 {
-                    left--;
-                }
-                else break;
-            }*/
-            while(right != chaine.length-1 && chaine[right] != '+' && chaine[right] != '-')
-            {
-                if(chaine[right+1] != '+' && chaine[right+1] != '-')
+                    if(chaine[left-1] != '+' && chaine[left-1] != '-')
+                    {
+                        left--;
+                    }
+                    else break;
+                }*/
+                while(right != chaine.length-1)
                 {
-                    right++;
+                    if(chaine[right+1] != '+' && chaine[right+1] != '-')
+                    {
+                        right++;
+                    }
+                    else break;
                 }
-                else break;
-            }
 
-            let nbLeft = chaine.substring(left,i);
-            let nbRight = chaine.substring(i+1, right+1);
+                let nbLeft = chaine.substring(left,i);
+                let nbRight = chaine.substring(i+1, right+1);
 
-            if(chaine[i] == '+')
-            {
-                let mult = parseFloat(nbLeft) + parseFloat(nbRight);
-                //console.log(mult);
-                let morc1 = chaine.substring(0, left);
-                //console.log(morc1);
-                let morc2 = chaine.substring(right+1, chaine.length);
-                //console.log(morc2);
-                chaine = morc1 + mult.toString() + morc2;
-                i=0;
-            }
-            else if(chaine[i] == '-')
-            {
-                let mult = parseFloat(nbLeft) - parseFloat(nbRight);
-                //console.log(mult);
-                let morc1 = chaine.substring(0, left);
-                //console.log(morc1);
-                let morc2 = chaine.substring(right+1, chaine.length);
-                //console.log(morc2);
-                chaine = morc1 + mult.toString() + morc2;
-                i=0;
+                if(chaine[i] == '+')
+                {
+                    let mult = parseFloat(nbLeft) + parseFloat(nbRight);
+                    //console.log(mult);
+                    let morc1 = chaine.substring(0, left);
+                    //console.log(morc1);
+                    let morc2 = chaine.substring(right+1, chaine.length);
+                    //console.log(morc2);
+                    chaine = morc1 + mult.toString() + morc2;
+                    i=0;
+                }
+                else if(chaine[i] == '-')
+                {
+                    let mult = parseFloat(nbLeft) - parseFloat(nbRight);
+                    //console.log(mult);
+                    let morc1 = chaine.substring(0, left);
+                    //console.log(morc1);
+                    let morc2 = chaine.substring(right+1, chaine.length);
+                    //console.log(morc2);
+                    chaine = morc1 + mult.toString() + morc2;
+                    i=0;
+                }
             }
         }        
     }
-
     return chaine;
     //document.getElementById("res").innerText = res;
 }
 
 function racine(chaine)
 {
-    chaine = foisAndDivisionV2(chaine);
-    chaine = plusAndMoinsV2(chaine);
+    chaine = foisAndDivisionV3(chaine);
+    chaine = plusAndMoinsV3(chaine);
     let res = Math.sqrt(parseFloat(chaine));
     chaine = res.toString();
     return chaine;
@@ -328,11 +336,11 @@ function racine(chaine)
 
 function puissance(chaine1, chaine2)
 {
-    chaine1 = foisAndDivisionV2(chaine1);
-    chaine1 = plusAndMoinsV2(chaine1);
+    chaine1 = foisAndDivisionV3(chaine1);
+    chaine1 = plusAndMoinsV3(chaine1);
 
-    chaine2 = foisAndDivisionV2(chaine2);
-    chaine2 = plusAndMoinsV2(chaine2);
+    chaine2 = foisAndDivisionV3(chaine2);
+    chaine2 = plusAndMoinsV3(chaine2);
 
     let res = Math.pow(parseFloat(chaine1), parseFloat(chaine2));
     let chaine = res.toString();
@@ -341,8 +349,8 @@ function puissance(chaine1, chaine2)
 
 function ln(chaine)
 {
-    chaine = foisAndDivisionV2(chaine);
-    chaine = plusAndMoinsV2(chaine);
+    chaine = foisAndDivisionV3(chaine);
+    chaine = plusAndMoinsV3(chaine);
 
     let res = Math.log(parseFloat(chaine));
     chaine = res.toString();
@@ -351,8 +359,8 @@ function ln(chaine)
 
 function exp(chaine)
 {
-    chaine = foisAndDivisionV2(chaine);
-    chaine = plusAndMoinsV2(chaine);
+    chaine = foisAndDivisionV3(chaine);
+    chaine = plusAndMoinsV3(chaine);
 
     let res = Math.exp(parseFloat(chaine));
     chaine = res.toString();
@@ -369,7 +377,7 @@ function checkValid(chaine)
     let valid = true;
     for(let i=0; i<chaine.length; i++)
     {
-        if(chaine[0] == '*' || chaine[0] == '/' || chaine[0] == '+' || chaine[0] == '-')
+        if(chaine[0] == '*' || chaine[0] == '/')
         {
             valid = false;
         }
@@ -377,13 +385,20 @@ function checkValid(chaine)
         {
             valid = false;
         }
-        if(chaine[i] == '*' || chaine[i] == '/' || chaine[i] == '+' || chaine[i] == '-')
+        if(chaine[i] == '*' || chaine[i] == '/')
         {
-            if(chaine[i-1] == '*' || chaine[i-1] == '/' || chaine[i-1] == '+' || chaine[i-1] == '-')
+            if(chaine[i-1] == '*' || chaine[i-1] == '/' || chaine[i-1] == '+' || chaine[i-1] == '+')
             {
                 valid = false;
             }
-            else if(chaine[i+1] == '*' || chaine[i+1] == '/' || chaine[i+1] == '+' || chaine[i+1] == '-')
+            if(chaine[i+1] == '*' || chaine[i+1] == '/' || chaine[i+1] == '+')
+            {
+                valid = false;
+            }
+        }
+        if(chaine[i] == '+')
+        {
+            if(chaine[i-1] == '+' || chaine[i+1] == '+')
             {
                 valid = false;
             }
