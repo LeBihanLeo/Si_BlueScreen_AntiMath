@@ -141,33 +141,65 @@ function changeMainToNotYet(){
 }
 //--------------------------------
 
-//fonctional listener
+//fonctional listener button
 function eventListenerBasicCalc(){
-document.getElementById("myButton").addEventListener("click", event => {
+document.getElementById("myButton").addEventListener("click", event => basicCalc(event));
+document.body.addEventListener("keydown", event => basicCalc(event));
+}
+
+function eventListenerSquareRoot(){
+    document.getElementById("myButton").addEventListener("click", event => squareRoot());
+    document.body.addEventListener("keydown", event => squareRoot(event));
+
+}
+
+function eventListenerPow(){
+    console.log("Pow inside");
+    document.getElementById("myButton").addEventListener("click", event => pow());
+    document.body.addEventListener("keydown", event => pow(event));
+}
+
+function eventListenerLn(){
+    document.getElementById("myButton").addEventListener("click", event => lnLoad());
+    document.body.addEventListener("keydown", event => lnLoad(event));
+}
+
+function eventListenerExp(){
+    document.getElementById("myButton").addEventListener("click", event => expLoad());
+    document.body.addEventListener("keydown", event => expLoad(event));
+}
+
+//--------------------------------
+
+
+
+//function load by listener
+function basicCalc(event){
+    if(event.keyCode==13 || event.keyCode == undefined){
         let chaine = document.getElementById("myInput").value;
         if(checkValid(chaine)){
             chaine = foisAndDivisionV3(chaine);
             chaine = plusAndMoinsV3(chaine);    
-            console.log(chaine);
+            console.log(event.key);
             document.getElementById("result").innerText = chaine;    
         }
-    });
+    }
 }
 
-function eventListenerSquareRoot(){
-    document.getElementById("myButton").addEventListener("click", event => {
+function squareRoot(event){
+    if(event.keyCode==13 || event.keyCode == undefined){
+
         let chaine = document.getElementById("myInput").value;
         if(checkValid(chaine)){
             chaine = racine(chaine);      
             console.log(chaine);
             document.getElementById("result").innerText = chaine;    
         }
-    });
+    }
 }
 
-function eventListenerPow(){
-    console.log("Pow inside");
-    document.getElementById("myButton").addEventListener("click", event => {
+function pow(event){
+    if(event.keyCode==13 || event.keyCode == undefined){
         let chaine1 = document.getElementById("myInput").value;
         let chaine2 = document.getElementById("exposant").value;
         if(checkValid(chaine1) && checkValid(chaine2)){
@@ -175,32 +207,31 @@ function eventListenerPow(){
             console.log(chaine);
             document.getElementById("result").innerText = chaine;    
         }
-    });
+    }
 }
 
-function eventListenerLn(){
-    document.getElementById("myButton").addEventListener("click", event => {
+
+function lnLoad(event){
+    if(event.keyCode==13 || event.keyCode == undefined){
         let chaine = document.getElementById("myInput").value;
         if(checkValid(chaine)){
             chaine = ln(chaine);      
             console.log(chaine);
             document.getElementById("result").innerText = chaine;    
         }
-    });
+    }
 }
 
-function eventListenerExp(){
-    document.getElementById("myButton").addEventListener("click", event => {
+function expLoad(event){
+    if(event.keyCode==13 || event.keyCode == undefined){
         let chaine = document.getElementById("myInput").value;
         if(checkValid(chaine)){
             chaine = exp(chaine);      
             console.log(chaine);
             document.getElementById("result").innerText = chaine;    
         }
-    });
+    }
 }
-
-//--------------------------------
 
 //calcul function multiplication/division
 function foisAndDivisionV3(chaine)
