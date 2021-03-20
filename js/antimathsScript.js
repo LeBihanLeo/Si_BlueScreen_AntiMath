@@ -434,6 +434,10 @@ function checkValid(chaine)
                 valid = false;
             }
         }
+        if(chaine[i] == '/' && chaine[i+1] == '0')
+        {
+            valid = false;
+        }
     }
     return valid;
 }
