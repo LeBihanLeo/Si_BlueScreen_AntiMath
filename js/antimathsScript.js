@@ -183,6 +183,9 @@ function basicCalc(event){
             console.log(event.key);
             document.getElementById("result").innerText = chaine;    
         }
+        else {
+            alert("Calcul incorrect ou impossible");
+        }
     }
 }
 
@@ -194,6 +197,9 @@ function squareRoot(event){
             chaine = racine(chaine);      
             console.log(chaine);
             document.getElementById("result").innerText = chaine;    
+        }
+        else {
+            alert("Calcul incorrect ou impossible");
         }
     }
 }
@@ -207,6 +213,9 @@ function pow(event){
             console.log(chaine);
             document.getElementById("result").innerText = chaine;    
         }
+        else {
+            alert("Calcul incorrect ou impossible");
+        }
     }
 }
 
@@ -219,6 +228,9 @@ function lnLoad(event){
             console.log(chaine);
             document.getElementById("result").innerText = chaine;    
         }
+        else {
+            alert("Calcul incorrect ou impossible");
+        }
     }
 }
 
@@ -229,6 +241,9 @@ function expLoad(event){
             chaine = exp(chaine);      
             console.log(chaine);
             document.getElementById("result").innerText = chaine;    
+        }
+        else {
+            alert("Calcul incorrect ou impossible");
         }
     }
 }
