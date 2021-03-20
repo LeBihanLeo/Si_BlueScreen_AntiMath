@@ -148,24 +148,24 @@ document.body.addEventListener("keydown", event => basicCalc(event));
 }
 
 function eventListenerSquareRoot(){
-    document.getElementById("myButton").addEventListener("click", event => squareRoot());
+    document.getElementById("myButton").addEventListener("click", event => squareRoot(event));
     document.body.addEventListener("keydown", event => squareRoot(event));
 
 }
 
 function eventListenerPow(){
     console.log("Pow inside");
-    document.getElementById("myButton").addEventListener("click", event => pow());
+    document.getElementById("myButton").addEventListener("click", event => pow(event));
     document.body.addEventListener("keydown", event => pow(event));
 }
 
 function eventListenerLn(){
-    document.getElementById("myButton").addEventListener("click", event => lnLoad());
+    document.getElementById("myButton").addEventListener("click", event => lnLoad(event));
     document.body.addEventListener("keydown", event => lnLoad(event));
 }
 
 function eventListenerExp(){
-    document.getElementById("myButton").addEventListener("click", event => expLoad());
+    document.getElementById("myButton").addEventListener("click", event => expLoad(event));
     document.body.addEventListener("keydown", event => expLoad(event));
 }
 
