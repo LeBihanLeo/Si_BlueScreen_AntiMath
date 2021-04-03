@@ -209,6 +209,7 @@ function squareRoot(event){
         }
         else {
             alert("Calcul incorrect ou impossible");
+            break;
         }
     }
 }
@@ -228,6 +229,7 @@ function pow(event){
         }
         else {
             alert("Calcul incorrect ou impossible");
+            break;
         }
     }
 }
@@ -247,6 +249,7 @@ function lnLoad(event){
         }
         else {
             alert("Calcul incorrect ou impossible");
+            break;
         }
     }
 }
@@ -265,6 +268,7 @@ function expLoad(event){
         }
         else {
             alert("Calcul incorrect ou impossible");
+            break;
         }
     }
 }
