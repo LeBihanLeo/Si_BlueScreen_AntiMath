@@ -189,6 +189,7 @@ function basicCalc(event){
         }
         else {
             alert("Calcul incorrect ou impossible");
+            break;
         }
     }
 }
