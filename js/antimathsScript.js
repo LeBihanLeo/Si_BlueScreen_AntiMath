@@ -189,7 +189,7 @@ function basicCalc(event){
         }
         else {
             alert("Calcul incorrect ou impossible");
-            break;
+            return;
         }
     }
 }
@@ -209,7 +209,7 @@ function squareRoot(event){
         }
         else {
             alert("Calcul incorrect ou impossible");
-            break;
+            return;
         }
     }
 }
@@ -229,7 +229,7 @@ function pow(event){
         }
         else {
             alert("Calcul incorrect ou impossible");
-            break;
+            return;
         }
     }
 }
@@ -249,7 +249,7 @@ function lnLoad(event){
         }
         else {
             alert("Calcul incorrect ou impossible");
-            break;
+            return;
         }
     }
 }
@@ -268,7 +268,7 @@ function expLoad(event){
         }
         else {
             alert("Calcul incorrect ou impossible");
-            break;
+            return;
         }
     }
 }
@@ -287,13 +287,13 @@ function foisAndDivisionV3(chaine)
                 if(chaine[left-1] == '-')
                 {
                     left--;
-                    break;
+                    return;
                 }
                 else if(chaine[left-1] != '*' && chaine[left-1] != '/' && chaine[left-1] != '+' && chaine[left-1] != '-')
                 {
                     left--;
                 }
-                else break;
+                else return;
             }
             while(right != chaine.length-1 && chaine[right] != '*' && chaine[right] != '/' && chaine[right] != '+')
             {
@@ -301,7 +301,7 @@ function foisAndDivisionV3(chaine)
                 {
                     right++;
                 }
-                else break;
+                else return;
             }
 
             let nbLeft = chaine.substring(left,i);
@@ -353,7 +353,7 @@ function plusAndMoinsV3(chaine)
                     {
                         left--;
                     }
-                    else break;
+                    else return;
                 }*/
                 while(right != chaine.length-1)
                 {
@@ -361,7 +361,7 @@ function plusAndMoinsV3(chaine)
                     {
                         right++;
                     }
-                    else break;
+                    else return;
                 }
 
                 let nbLeft = chaine.substring(left,i);
